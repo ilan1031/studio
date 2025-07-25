@@ -1,0 +1,133 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Royal UI Theme (Deep Red, Light Beige, Soft Gold) - Light Mode */
+    --background: 48 60% 90%; /* Light Beige - HSL for #F5F5DC is approx 60 56% 91%, using a slightly warmer hue */
+    --foreground: 30 50% 15%; /* Dark Warm Brown for text */
+    --card: 45 50% 96%; /* Very Light Cream/Off-white for cards */
+    --card-foreground: 30 50% 15%;
+    --popover: 45 50% 96%;
+    --popover-foreground: 30 50% 15%;
+    --primary: 0 100% 27%; /* Deep Red - HSL for #8B0000 */
+    --primary-foreground: 0 0% 100%; /* White text on Deep Red */
+    --secondary: 30 60% 80%; /* Lighter shade of warm beige/peach */
+    --secondary-foreground: 30 50% 25%; /* Darker warm brown */
+    --muted: 40 40% 88%; /* Muted Light Warm Gray/Beige */
+    --muted-foreground: 30 30% 45%; /* Darker Muted Warm Gray */
+    --accent: 45 100% 50%; /* Soft Gold - HSL for #FFD700 */
+    --accent-foreground: 40 100% 10%; /* Dark brown for gold accent text */
+    --destructive: 0 75% 55%; /* Standard Red for destructive actions */
+    --destructive-foreground: 0 0% 100%;
+    --border: 40 30% 75%; /* Warm Gray/Beige border */
+    --input: 30 30% 45%; /* Darker Warm Gray for input borders - was 40 30% 65% making it darker */
+    --ring: 0 100% 27%; /* Deep Red for rings */
+    --radius: 0.5rem;
+
+    /* Chart Colors - Light Theme (Red/Gold/Warm Tones Palette) */
+    --chart-1: 0 70% 45%;  /* Primary Red, slightly desaturated for charts */
+    --chart-2: 45 80% 55%;   /* Accent Gold, slightly desaturated */
+    --chart-3: 25 70% 60%;  /* Warm Orange */
+    --chart-4: 90 40% 45%;  /* Muted Olive Green for positive sentiment */
+    --chart-5: 340 60% 60%;  /* A contrasting Rose/Pink */
+
+    /* Status Text Colors - Light Theme */
+    --status-active-text: 90 50% 25%;   /* Darker Olive Green for text on light active bg */
+    --status-closed-text: 0 75% 30%;    /* Darker Red for text on light closed bg */
+    --status-draft-text: 45 70% 30%;     /* Darker Gold/Brown for text on light draft bg */
+    --status-scheduled-text: 0 70% 30%; /* Darker Red-Brown for text on light scheduled bg */
+    --status-pending-text: 30 70% 30%; /* Darker Orange-Brown for text on light pending bg */
+
+    /* Sidebar specific theme */
+    --sidebar-background: 40 35% 88%; /* Slightly darker/muted warm beige for sidebar */
+    --sidebar-foreground: 30 40% 20%;
+    --sidebar-primary: 0 100% 27%; /* Deep Red */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 30% 92%; /* Lighter warm beige for hover */
+    --sidebar-accent-foreground: 0 100% 27%; /* Deep Red for text on accent */
+    --sidebar-border: 40 30% 78%;
+    --sidebar-ring: 45 100% 50%; /* Gold for sidebar ring */
+  }
+
+  .dark {
+    /* Blue Color Palette - Dark Mode */
+    --background: 220 30% 10%; /* Very Dark Desaturated Blue */
+    --foreground: 210 20% 90%; /* Light Cool Gray */
+    --card: 220 30% 15%; /* Dark Desaturated Blue, slightly lighter than background */
+    --card-foreground: 210 20% 90%;
+    --popover: 220 30% 12%; /* Darker Popover */
+    --popover-foreground: 210 20% 90%;
+    --primary: 210 90% 60%; /* Strong, Medium-to-Bright Blue */
+    --primary-foreground: 0 0% 100%; /* White text */
+    --secondary: 215 40% 25%; /* Darker, Muted Blue */
+    --secondary-foreground: 210 30% 80%; /* Lighter, Muted Blue/Gray */
+    --muted: 220 25% 20%; /* Very Dark Blue/Gray, for subtle elements */
+    --muted-foreground: 210 15% 65%; /* Medium Cool Gray */
+    --accent: 190 80% 55%; /* Bright Teal/Cyan */
+    --accent-foreground: 220 50% 10%; /* Dark Blue/Black for accent text */
+    --destructive: 0 70% 60%; /* Brighter Red for dark mode destructive */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 20% 25%; /* Dark Blue-Gray, for subtle borders */
+    --input: 220 20% 30%; /* Slightly Lighter Dark Blue-Gray for input borders */
+    --ring: 210 90% 60%; /* Primary Blue for rings */
+
+    /* Chart Colors - Dark Theme (Blue Palette) */
+    --chart-1: 210 80% 65%;  /* Main Blue */
+    --chart-2: 190 70% 60%;  /* Teal/Cyan */
+    --chart-3: 200 60% 70%;  /* Lighter Blue */
+    --chart-4: 160 50% 60%;  /* Desaturated Blue-Green (positive) */
+    --chart-5: 250 50% 70%;  /* Contrasting Indigo/Purple */
+
+    /* Status Text Colors - Dark Theme (Blue Palette) */
+    --status-active-text: 160 70% 80%;   /* Light Blue-Green */
+    --status-closed-text: 0 70% 80%;     /* Light Red (consistent) */
+    --status-draft-text: 190 70% 80%;    /* Light Teal */
+    --status-scheduled-text: 200 70% 80%;/* Light Blue */
+    --status-pending-text: 240 60% 80%;  /* Light Indigo */
+
+    /* Sidebar specific theme for dark mode (Blue Palette) */
+    --sidebar-background: 220 30% 10%; /* Same as main dark bg */
+    --sidebar-foreground: 210 20% 90%; /* Same as main dark fg */
+    --sidebar-primary: 210 90% 60%; /* Primary Blue */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 30% 20%; /* Darker blue for hover, distinct from primary */
+    --sidebar-accent-foreground: 190 80% 75%; /* Teal for text on accent hover */
+    --sidebar-border: 220 20% 22%; /* Darker border for sidebar */
+    --sidebar-ring: 190 80% 55%; /* Accent Teal for sidebar ring */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    /* Subtle gradient from very light cream to light beige for light mode */
+    @apply bg-gradient-to-br from-[hsl(45,50%,98%)] to-[hsl(var(--background))] text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  .dark body {
+    /* Subtle dark gradient for dark mode (blue-ish) */
+    @apply bg-gradient-to-br from-[hsl(220,30%,12%)] to-[hsl(var(--background))];
+  }
+}
+
+/* Custom scrollbar for a more modern look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background) / 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.7);
+}
