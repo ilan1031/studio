@@ -1,0 +1,68 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all reads and writes
+    // match /{document=**} {
+    //   allow read, write: if false;
+    // }
+
+    // Rules for the 'surveys' collection
+    match /surveys/{surveyId} {
+      // Allow any authenticated user to read surveys.
+      // For development, this is often fine. For production, you might restrict further, e.g.:
+      // allow read: if request.auth.uid == resource.data.createdBy;
+      allow read: if request.auth != null;
+
+      // Allow a user to create a new survey document if:
+      // 1. They are authenticated.
+      // 2. The 'createdBy' field in the document they are creating
+      //    matches their own user ID.
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.createdBy;
+
+      // Allow a user to update or delete an existing survey document if:
+      // 1. They are authenticated.
+      // 2. The 'createdBy' field in the existing document (resource.data.createdBy)
+      //    matches their own user ID.
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.createdBy;
+    }
+
+    // Rules for the 'responses' collection
+    match /responses/{responseId} {
+      // Allow anyone to create a response (submit a form)
+      // For public forms. If forms require auth, check request.auth != null
+      allow create: if true; 
+
+      // Allow the form creator to read responses for their survey
+      // And allow the respondent to read their own response (if userId is captured and matches)
+      allow read: if request.auth != null && (
+                    (resource.data.userId != null && request.auth.uid == resource.data.userId) ||
+                    request.auth.uid == get(/databases/$(database)/documents/surveys/$(resource.data.formId)).data.createdBy
+                  );
+      // Generally, responses are not updated or deleted by users.
+      // Admin/owner might have different rules.
+      allow update, delete: if false; 
+    }
+
+    // Rules for 'users' collection
+    match /users/{userId} {
+      // Allow a user to read their own document
+      allow read: if request.auth != null && request.auth.uid == userId;
+      // Allow a user to create their own document (e.g., on signup)
+      allow create: if request.auth != null && request.auth.uid == userId;
+      // Allow a user to update their own document
+      allow update: if request.auth != null && request.auth.uid == userId;
+      // Disallow delete for now, or add specific conditions
+      allow delete: if false; 
+    }
+
+    // Rules for 'invites' collection
+    match /invites/{inviteId} {
+        // Example: only authenticated users (perhaps team owners/admins) can manage invites
+        // You'll need to refine this based on your invite system logic
+        allow read, write: if request.auth != null; 
+    }
+  }
+}
